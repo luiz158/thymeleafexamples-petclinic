@@ -22,7 +22,8 @@
     <context:component-scan
             base-package="org.springframework.samples.petclinic.web"/>
 
-    <mvc:annotation-driven conversion-service="conversionService"/>
+    <!-- 'hdivEditableValidator' is the predefined bean for Editable Validation -->
+    <mvc:annotation-driven validator="hdivEditableValidator" conversion-service="conversionService"/>
 
     <!--  all resources inside folder src/main/webapp/resources are mapped so they can be refered to inside JSP files
         (see header.jsp for more details) -->

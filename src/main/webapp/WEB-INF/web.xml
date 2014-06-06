@@ -24,12 +24,26 @@
 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring/business-config.xml, classpath:spring/tools-config.xml</param-value>
+        <param-value>classpath:spring/business-config.xml, classpath:spring/tools-config.xml, classpath:spring/hdiv-config.xml</param-value>
     </context-param>
 
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
+	<!-- HDIV Init Listener -->
+	<listener>
+		<listener-class>org.hdiv.listener.InitListener</listener-class>
+	</listener>
+	<!-- HDIV Validator Filter --> 
+	<filter>
+		<filter-name>ValidatorFilter</filter-name>
+		<filter-class>org.hdiv.filter.ValidatorFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ValidatorFilter</filter-name>
+		<servlet-name>petclinic</servlet-name>
+	</filter-mapping>
 
     <!--
 - Servlet that dispatches request to registered handlers (Controller implementations).

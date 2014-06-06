@@ -1,8 +1,10 @@
-# Spring PetClinic + Thymeleaf Sample Application
+# Spring PetClinic + Thymeleaf + HDIV Sample Application
 
 ## What's this?
 This is a thymeleaf-enabled version of the Spring PetClinic official
 sample application by SpringSource.
+
+HDIV is added to secure the application.
 
 The original application lives at https://github.com/SpringSource/spring-petclinic
 

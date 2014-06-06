@@ -74,6 +74,8 @@
       
         <mysql.version>5.1.22</mysql.version>
         
+        <!-- HDIV -->
+        <org.hdiv-version>2.1.7.RC2</org.hdiv-version>
     </properties>
 
         <dependencies>         
@@ -369,6 +371,23 @@
              <version>${aspectj.version}</version>
              <scope>runtime</scope>
          </dependency>
+         
+         <!-- HDIV -->
+		<dependency>
+			<groupId>org.hdiv</groupId>
+			<artifactId>hdiv-core</artifactId>
+			<version>${org.hdiv-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hdiv</groupId>
+			<artifactId>hdiv-thymeleaf</artifactId>
+			<version>${org.hdiv-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hdiv</groupId>
+			<artifactId>hdiv-config</artifactId>
+			<version>${org.hdiv-version}</version>
+		</dependency>
          
        </dependencies>
 
