@@ -23,7 +23,7 @@ import javax.persistence.MappedSuperclass;
 /**
  * Simple JavaBean domain object with an id property. Used as a base class for objects needing this property.
  *
- * @author Ken Krebs
+ * @author Ken Krebs test
  * @author Juergen Hoeller
  */
 @MappedSuperclass
