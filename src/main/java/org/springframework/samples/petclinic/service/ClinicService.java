@@ -21,6 +21,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.samples.petclinic.model.Specialty;
+import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.util.EntityUtils;
 import org.springframework.stereotype.Service;
@@ -51,7 +52,6 @@ public class ClinicService {
     /**
      * Refresh the cache of Vets that the ClinicService is holding.
      *
-     * @see org.springframework.samples.petclinic.model.service.ClinicService#findVets()
      */
 //    @Override
     public Collection<Vet> findAll() throws DataAccessException {
@@ -84,4 +84,16 @@ public class ClinicService {
         }
         return vets;
     }
+
+    public Collection<User> findAllUsers() throws DataAccessException {
+        List<User> users = new ArrayList<User>();
+        // Retrieve the list of all vets.
+        users.addAll(this.jdbcTemplate.query(
+                "SELECT id, first_name, last_name FROM users ORDER BY last_name,first_name",
+                ParameterizedBeanPropertyRowMapper.newInstance(User.class)));
+
+        return users;
+    }
+
+
 }

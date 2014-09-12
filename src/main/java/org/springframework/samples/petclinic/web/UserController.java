@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Users;
 import org.springframework.samples.petclinic.model.Vets;
 import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.stereotype.Controller;
@@ -29,19 +30,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Arjen Poutsma
  */
 @Controller
-public class VetController {
+public class UserController {
 
     @Autowired
     ClinicService clinicService;
 
-    @RequestMapping("/vets")
+    @RequestMapping("/users")
     public String showVetList(Model model    ) {
         // Here we are returning an object of type 'Vets' rather than a collection of Vet objects
         // so it is simpler for Object-Xml mapping
-        Vets vets = new Vets();
-        vets.getVetList().addAll(this.clinicService.findAll());
-        model.addAttribute("vets", vets);
-        return "vets/vetList";
+        Users users = new Users();
+        users.getUserList().addAll(this.clinicService.findAllUsers());
+        model.addAttribute("users", users);
+        return "users/userList";
     }
 
 

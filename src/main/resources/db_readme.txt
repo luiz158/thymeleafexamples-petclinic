@@ -2,7 +2,7 @@
 ===        Spring PetClinic sample application - Database Configuration      ===
 ================================================================================
 
-@author Costin Leau
+@author Costin Lea
 
 --------------------------------------------------------------------------------
 

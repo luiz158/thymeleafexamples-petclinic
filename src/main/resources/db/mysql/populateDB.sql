@@ -5,6 +5,9 @@ INSERT IGNORE INTO vets VALUES (4, 'Rafael', 'Ortega');
 INSERT IGNORE INTO vets VALUES (5, 'Henry', 'Stevens');
 INSERT IGNORE INTO vets VALUES (6, 'Sharon', 'Jenkins');
 
+INSERT IGNORE INTO users VALUES (1, 'Mikk', 'V');
+INSERT IGNORE INTO users VALUES (2, 'Liisi', 'K');
+
 INSERT IGNORE INTO specialties VALUES (1, 'radiology');
 INSERT IGNORE INTO specialties VALUES (2, 'surgery');
 INSERT IGNORE INTO specialties VALUES (3, 'dentistry');
