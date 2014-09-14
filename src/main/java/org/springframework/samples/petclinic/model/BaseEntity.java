@@ -22,8 +22,9 @@ import javax.persistence.MappedSuperclass;
 
 /**
  * Simple JavaBean domain object with an id property. Used as a base class for objects needing this property.
- *
+ * <p/>
  * test test
+ *
  * @author Ken Krebs test
  * @author Juergen Hoeller
  */
@@ -33,13 +34,12 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
 
+    public Integer getId() {
+        return id;
+    }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public boolean isNew() {
