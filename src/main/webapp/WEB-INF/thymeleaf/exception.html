@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/headTag :: headTag"></head>
+<body>
+<div class="container">
+    <div th:include="fragments/bodyHeader" th:remove="tag"></div>
+    <h2>Exception occured...</h2>
+
+    <p th:text="${exception.message}">The exception message...</p>
+    <table th:replace="fragments/footer :: footer" class="footer"></table>
+</div>
+</body>
+</html>
