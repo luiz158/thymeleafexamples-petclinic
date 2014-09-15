@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.lang.reflect.Method;
 
 @Controller
 public class UserController {
@@ -35,11 +37,15 @@ public class UserController {
     }
 
     @RequestMapping("/users/update/{userId}")
-    public String updateUser(Model model, @PathVariable int userId) {
+    public String updateUser(Model model, @PathVariable int userId,HttpServletRequest request) {
         User user = this.userService.findUserById(userId);
-        model.addAttribute("user",user);
-        return "/users/updateUser";
-
+        if(request.getParameter("doUpdate") != null && request.getParameter("doUpdate").equals("update")){
+            this.userService.updateUser(request.getParameter("firstName"),request.getParameter("lastName"),userId);
+            return "redirect:/users";
+        }else{
+            model.addAttribute("user",user);
+            return "/users/updateUser";
+        }
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)

@@ -26,7 +26,9 @@ import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.samples.petclinic.model.User;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -50,18 +52,19 @@ public class UserService {
     }
 
     public void deleteUser(int userId) {
-    this.jdbcTemplate.update("DELETE FROM users WHERE id = ?", userId);
-}
+        this.jdbcTemplate.update("DELETE FROM users WHERE id = ?", userId);
+    }
 
-    public void insertUser(){
+    public void insertUser() {
         this.jdbcTemplate.execute("INSERT INTO users VALUES (NULL,'Liisi', 'K')");
 
     }
-    public User findUserById(int userId){
+
+    public User findUserById(int userId) {
         User user;
         try {
             String sql = "SELECT id, first_name, last_name FROM users WHERE id= ?";
-            user = (User)jdbcTemplate.queryForObject(sql, new Object[] { userId }, new BeanPropertyRowMapper(User.class));
+            user = (User) jdbcTemplate.queryForObject(sql, new Object[]{userId}, new BeanPropertyRowMapper(User.class));
 
 //            System.out.println("USER ID" + user.getId());
 //            System.out.println("USER FIRST NAME " + user.getFirstName());
@@ -70,5 +73,9 @@ public class UserService {
             throw new ObjectRetrievalFailureException(User.class, userId);
         }
         return user;
+    }
+
+    public void updateUser(String firstName, String lastName, int userId) {
+        this.jdbcTemplate.update("UPDATE users SET first_name = ?, last_name = ? WHERE id = ?", firstName, lastName, userId);
     }
 }
