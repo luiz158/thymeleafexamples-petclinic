@@ -11,6 +11,7 @@ import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.samples.petclinic.model.User;
 import org.springframework.stereotype.Service;
 
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -39,8 +40,12 @@ public class UserService {
         this.jdbcTemplate.update("DELETE FROM users WHERE id = ?", userId);
     }
 
-    public void insertUser() {
-        this.jdbcTemplate.execute("INSERT INTO users VALUES (NULL,'Liisi', 'K')");
+    public void insertUser(User user) {
+        Object[] params = new Object[]{user.getFirstName(), user.getLastName()};
+        int[] types = new int[]{Types.VARCHAR, Types.VARCHAR};
+
+        this.jdbcTemplate.update("INSERT INTO users VALUES (NULL, ?, ?)",
+                params, types);
     }
 
     public User findUserById(int userId) {

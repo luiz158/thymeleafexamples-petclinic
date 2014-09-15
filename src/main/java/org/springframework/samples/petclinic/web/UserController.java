@@ -6,17 +6,13 @@ import org.springframework.samples.petclinic.model.Users;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 @Controller
+@SessionAttributes("user")
 public class UserController {
 
     @Autowired
@@ -25,8 +21,12 @@ public class UserController {
     @RequestMapping("/users")
     public String getUsers(Model model) {
         Users users = new Users();
+        // puhtalt selleks, et saaks initsialiseerida Thymeleaf'i view's nt vormil *{firstName} objekti, kuna sul on
+        // ühel ja samal vormil nii lisamine kui kuvamine
+        User user = new User();
         users.getUserList().addAll(this.userService.findAllUsers());
         model.addAttribute("users", users);
+        model.addAttribute("user", user);
         return "users/userList";
     }
 
@@ -47,14 +47,13 @@ public class UserController {
     public String updateUser(Model model, @PathVariable int userId, HttpServletRequest request, SessionStatus status,
                              @ModelAttribute("user") User user) {
         this.userService.updateUser(user.getFirstName(), user.getLastName(), userId);
-        status.setComplete();
         return "redirect:/users";
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public String processCreationForm(@Valid User user, BindingResult result, SessionStatus status) {
-        this.userService.insertUser();
-
+    public String processCreationForm(Model model, @ModelAttribute("user") User user, SessionStatus status) {
+        this.userService.insertUser(user);
+        status.setComplete();
         return "redirect:/users";
     }
 }

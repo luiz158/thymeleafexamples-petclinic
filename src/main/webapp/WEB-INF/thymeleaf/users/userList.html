@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <!--suppress XmlUnboundNsPrefix -->
 <html lang="en">
-<head th:replace="fragments/headTag :: headTag">
-</head>
+<head th:replace="fragments/headTag :: headTag"></head>
 <body>
 <div class="container">
     <div th:include="fragments/bodyHeader" th:remove="tag">
     </div>
     <h2>Add users</h2>
 
-    <form th:method="post" th:action="@{${#httpServletRequest.servletPath}}" class="form-horizontal" id="add-owner-form">
+    <form th:object="${user}" th:method="post" th:action="'#'" class="form-horizontal" id="add-owner-form">
         <div class="control-group">
             <label class="control-label">First Name</label>
+
             <div class="controls">
-                <input type="text" th:placeholder="|First name|" />
+                <input type="text" th:placeholder="|First name|" th:field="*{firstName}"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Last Name</label>
+
+            <div class="controls">
+                <input type="text" th:placeholder="|Last name|" th:field="*{lastName}"/>
             </div>
         </div>
         <div class="form-actions">
             <button type="submit">Add</button>
         </div>
     </form>
-
     <h2 th:text="#{forms.users.title}">Users</h2>
-
     <table class="table table-stripped" style="width:600px;">
         <thead>
         <tr>
@@ -34,13 +39,12 @@
         <tbody>
         <tr th:each="user : ${users.userList}">
             <td><a th:href="@{/users/remove/} + ${user.id}">X</a></td>
-            <td><a th:href="@{/users/update/} + ${user.id}" th:text="${'Update user w id '} + ${user.id}">Update</a></td>
+            <td><a th:href="@{/users/update/} + ${user.id}" th:text="|Update user w id: ${user.id}|">Update</a></td>
             <td th:text="|${user.firstName} ${user.lastName}|">[firstName lastName]</td>
         </tr>
         </tbody>
     </table>
-    <table th:replace="fragments/footer :: footer" class="footer">
-    </table>
+    <table th:replace="fragments/footer :: footer" class="footer"></table>
 </div>
 </body>
 </html>
