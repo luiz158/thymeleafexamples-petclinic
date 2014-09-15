@@ -12,6 +12,7 @@
 
             <div class="controls">
                 <input type="text" th:placeholder="|First name|" th:field="*{firstName}"/>
+                <span class="help-inline" th:errors="*{firstName}">[error]</span>
             </div>
         </div>
         <div class="control-group">
@@ -19,6 +20,7 @@
 
             <div class="controls">
                 <input type="text" th:placeholder="|Last name|" th:field="*{lastName}"/>
+                <span class="help-inline" th:errors="*{lastName}">[error]</span>
             </div>
         </div>
         <div class="form-actions">

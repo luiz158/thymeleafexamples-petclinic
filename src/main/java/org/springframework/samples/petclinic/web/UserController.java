@@ -49,9 +49,14 @@ public class UserController {
 
     @RequestMapping(value = "/users/update/{userId}", method = RequestMethod.POST)
     public String updateUser(Model model, @PathVariable int userId, HttpServletRequest request, SessionStatus status,
-                             @ModelAttribute("user") User user) {
-        this.userService.updateUser(user.getFirstName(), user.getLastName(), userId);
-        return "redirect:/users";
+                             @ModelAttribute("user") User user,BindingResult result) {
+        new UserValidator().validate(user, result);
+        if(result.hasErrors()){
+            return "redirect:/users/update/{userId}";
+        }else{
+            this.userService.updateUser(user.getFirstName(), user.getLastName(), userId);
+            return "redirect:/users";
+        }
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
