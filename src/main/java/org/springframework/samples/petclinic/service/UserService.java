@@ -5,7 +5,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.samples.petclinic.model.User;
@@ -20,7 +19,6 @@ import java.util.List;
 public class UserService {
 
     private JdbcTemplate jdbcTemplate;
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
     public UserService(JdbcTemplate jdbcTemplate) {
@@ -44,15 +42,14 @@ public class UserService {
         Object[] params = new Object[]{user.getFirstName(), user.getLastName()};
         int[] types = new int[]{Types.VARCHAR, Types.VARCHAR};
 
-        this.jdbcTemplate.update("INSERT INTO users VALUES (NULL, ?, ?)",
-                params, types);
+        this.jdbcTemplate.update("INSERT INTO users VALUES (NULL, ?, ?)", params, types);
     }
 
     public User findUserById(int userId) {
         User user;
         try {
             String sql = "SELECT id, first_name, last_name FROM users WHERE id= ?";
-            user = (User) jdbcTemplate.queryForObject(sql, new Object[]{userId}, new BeanPropertyRowMapper(User.class));
+            user = jdbcTemplate.queryForObject(sql, new Object[]{userId}, new BeanPropertyRowMapper<User>(User.class));
         } catch (EmptyResultDataAccessException ex) {
             System.out.println("findUserById error occured: " + ex);
             throw new ObjectRetrievalFailureException(User.class, userId);

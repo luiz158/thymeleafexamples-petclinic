@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.model.Users;
 import org.springframework.samples.petclinic.service.UserService;
+import org.springframework.samples.petclinic.util.UserValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -51,9 +53,17 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public String processCreationForm(Model model, @ModelAttribute("user") User user, SessionStatus status) {
-        this.userService.insertUser(user);
-        status.setComplete();
-        return "redirect:/users";
+    public String insertUser(Model model, @ModelAttribute("user") User user, SessionStatus status, BindingResult result) {
+        new UserValidator().validate(user, result);
+        if (result.hasErrors()) {
+            Users users = new Users();
+            users.getUserList().addAll(this.userService.findAllUsers());
+            model.addAttribute("users", users);
+            return "users/userList";
+        } else {
+            this.userService.insertUser(user);
+            status.setComplete();
+            return "redirect:/users";
+        }
     }
 }
