@@ -57,6 +57,7 @@ public class UserService {
 
     public void insertUser(String firstName,String lastName) {
         this.jdbcTemplate.update("INSERT INTO users VALUES(NULL, ? , ?)", firstName, lastName);
+
     }
 
     public User findUserById(int userId) {
