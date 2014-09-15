@@ -95,5 +95,10 @@ public class ClinicService {
         return users;
     }
 
+    public void removeUser(int userId) throws DataAccessException{
+        this.jdbcTemplate.query("DELETE FROM users WHERE id=:userId",
+                ParameterizedBeanPropertyRowMapper.newInstance(User.class));
+    }
+
 
 }

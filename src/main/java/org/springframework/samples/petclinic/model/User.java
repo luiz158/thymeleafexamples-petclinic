@@ -29,4 +29,17 @@ import java.util.*;
 @Table(name = "users")
 public class User extends Person {
 
+    private String role;
+
+    public User() {
+        this.role = "worker";
+    }
+
+    public User(String role) {
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
+    }
 }

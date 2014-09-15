@@ -15,12 +15,16 @@
     <table class="table table-stripped" style="width:600px;">
         <thead>
         <tr>
+            <th>Delete</th>
             <th>Name</th>
+            <th>Role</th>
         </tr>
         </thead>
         <tbody>
             <tr th:each="user : ${users.userList}">
+                <td><a th:href="@{|/users/delete/${user.id}|}" th:text="|X  ${user.id}|">X</a></td>
                 <td th:text="|${user.firstName} ${user.lastName}|">[firstName lastName]</td>
+                <td th:text="|${user.role}|">Role</td>
             </tr>
         </tbody>
     </table>
