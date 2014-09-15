@@ -5,8 +5,10 @@ INSERT INTO vets VALUES (4, 'Rafael', 'Ortega');
 INSERT INTO vets VALUES (5, 'Henry', 'Stevens');
 INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins');
 
-INSERT INTO users VALUES (1, 'Liisi', 'K');
-INSERT INTO users VALUES (2, 'Mikk', 'V');
+INSERT INTO users VALUES (NULL,'Liisi', 'K');
+INSERT INTO users VALUES (NULL,'Mikk', 'V');
+INSERT INTO users VALUES (NULL,'Mikk2', 'V');
+INSERT INTO users VALUES (NULL,'Mikk3', 'V');
 
 INSERT INTO specialties VALUES (1, 'radiology');
 INSERT INTO specialties VALUES (2, 'surgery');

@@ -7,16 +7,34 @@
 <div class="container">
     <div th:include="fragments/bodyHeader" th:remove="tag">
     </div>
+    <h2>Add users</h2>
+
+    <form th:method="post" th:action="@{${#httpServletRequest.servletPath}}" class="form-horizontal" id="add-owner-form">
+        <div class="control-group">
+            <label class="control-label">First Name</label>
+            <div class="controls">
+                <input type="text" th:placeholder="|First name|" />
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit">Add</button>
+        </div>
+    </form>
+
     <h2 th:text="#{forms.users.title}">Users</h2>
+
     <table class="table table-stripped" style="width:600px;">
         <thead>
         <tr>
-            <th text="#{forms.users.title}">Name</th>
+            <th>Delete</th>
+            <th>Update Details</th>
+            <th th:text="#{forms.users.result.name}">Name</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="user : ${users.userList}">
             <td><a th:href="@{/users/remove/} + ${user.id}">X</a></td>
+            <td><a th:href="@{/users/update/} + ${user.id}" th:text="${'Update user w id '} + ${user.id}">Update</a></td>
             <td th:text="|${user.firstName} ${user.lastName}|">[firstName lastName]</td>
         </tr>
         </tbody>

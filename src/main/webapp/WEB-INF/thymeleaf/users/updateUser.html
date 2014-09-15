@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--suppress XmlUnboundNsPrefix -->
+<html lang="en">
+<head th:replace="fragments/headTag :: headTag">
+</head>
+<body>
+<div class="container">
+    <div th:include="fragments/bodyHeader" th:remove="tag">
+    </div>
+    <form th:object="${user}" th:method="post" th:action="@{${#httpServletRequest.servletPath}}" class="form-horizontal" id="add-owner-form">
+        <div class="control-group">
+            <label class="control-label">First Name</label>
+            <div class="controls">
+                <input type="text" th:placeholder="|First name|" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Last Name</label>
+            <div class="controls">
+                <input type="text" th:placeholder="|Last name|" />
+            </div>
+        </div>
+        <div class="form-actions">
+            <button type="submit">Add</button>
+        </div>
+    </form>
+
+
+    <table th:replace="fragments/footer :: footer" class="footer">
+    </table>
+</div>
+</body>
+</html>
