@@ -7,6 +7,7 @@ import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.lang.reflect.Method;
 
 @Controller
 public class UserController {
@@ -36,16 +36,19 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @RequestMapping("/users/update/{userId}")
-    public String updateUser(Model model, @PathVariable int userId,HttpServletRequest request) {
+    @RequestMapping(value = "/users/update/{userId}", method = RequestMethod.GET)
+    public String getUser(Model model, @PathVariable int userId) {
         User user = this.userService.findUserById(userId);
-        if(request.getParameter("doUpdate") != null && request.getParameter("doUpdate").equals("update")){
-            this.userService.updateUser(request.getParameter("firstName"),request.getParameter("lastName"),userId);
-            return "redirect:/users";
-        }else{
-            model.addAttribute("user",user);
-            return "/users/updateUser";
-        }
+        model.addAttribute("user", user);
+        return "/users/updateUser";
+    }
+
+    @RequestMapping(value = "/users/update/{userId}", method = RequestMethod.POST)
+    public String updateUser(Model model, @PathVariable int userId, HttpServletRequest request, SessionStatus status,
+                             @ModelAttribute("user") User user) {
+        this.userService.updateUser(user.getFirstName(), user.getLastName(), userId);
+        status.setComplete();
+        return "redirect:/users";
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)

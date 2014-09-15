@@ -1,18 +1,3 @@
-/*
- * Copyright 2002-2013 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package org.springframework.samples.petclinic.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +21,6 @@ public class UserService {
     private JdbcTemplate jdbcTemplate;
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-
     @Autowired
     public UserService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -57,7 +41,6 @@ public class UserService {
 
     public void insertUser() {
         this.jdbcTemplate.execute("INSERT INTO users VALUES (NULL,'Liisi', 'K')");
-
     }
 
     public User findUserById(int userId) {
@@ -65,17 +48,15 @@ public class UserService {
         try {
             String sql = "SELECT id, first_name, last_name FROM users WHERE id= ?";
             user = (User) jdbcTemplate.queryForObject(sql, new Object[]{userId}, new BeanPropertyRowMapper(User.class));
-
-//            System.out.println("USER ID" + user.getId());
-//            System.out.println("USER FIRST NAME " + user.getFirstName());
-//            System.out.println("USER LAST NAME " + user.getLastName());
         } catch (EmptyResultDataAccessException ex) {
+            System.out.println("findUserById error occured: " + ex);
             throw new ObjectRetrievalFailureException(User.class, userId);
         }
         return user;
     }
 
     public void updateUser(String firstName, String lastName, int userId) {
-        this.jdbcTemplate.update("UPDATE users SET first_name = ?, last_name = ? WHERE id = ?", firstName, lastName, userId);
+        this.jdbcTemplate.update("UPDATE users SET first_name = ?, last_name = ? WHERE id = ?",
+                firstName, lastName, userId);
     }
 }
