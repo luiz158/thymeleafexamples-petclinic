@@ -55,9 +55,8 @@ public class UserService {
         this.jdbcTemplate.update("DELETE FROM users WHERE id = ?", userId);
     }
 
-    public void insertUser() {
-        this.jdbcTemplate.execute("INSERT INTO users VALUES (NULL,'Liisi', 'K')");
-
+    public void insertUser(String firstName,String lastName) {
+        this.jdbcTemplate.update("INSERT INTO users VALUES(NULL, ? , ?)", firstName, lastName);
     }
 
     public User findUserById(int userId) {
@@ -65,10 +64,6 @@ public class UserService {
         try {
             String sql = "SELECT id, first_name, last_name FROM users WHERE id= ?";
             user = (User) jdbcTemplate.queryForObject(sql, new Object[]{userId}, new BeanPropertyRowMapper(User.class));
-
-//            System.out.println("USER ID" + user.getId());
-//            System.out.println("USER FIRST NAME " + user.getFirstName());
-//            System.out.println("USER LAST NAME " + user.getLastName());
         } catch (EmptyResultDataAccessException ex) {
             throw new ObjectRetrievalFailureException(User.class, userId);
         }

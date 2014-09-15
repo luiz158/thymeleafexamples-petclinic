@@ -49,8 +49,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public String processCreationForm(@Valid User user, BindingResult result, SessionStatus status) {
-        this.userService.insertUser();
+    public String processCreationForm(@Valid User user, BindingResult result, SessionStatus status, HttpServletRequest request) {
+        this.userService.insertUser(request.getParameter("firstName"),request.getParameter("lastName"));
 
         return "redirect:/users";
     }
