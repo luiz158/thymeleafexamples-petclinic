@@ -23,7 +23,7 @@ public class UserController {
     UserService userService;
 
     @RequestMapping("/users")
-    public String getUsers(Model model) {
+    public String getUsers(Model model, @ModelAttribute("success") String success) {
         Users users = new Users();
         // puhtalt selleks, et saaks initsialiseerida Thymeleaf'i view's nt vormil *{firstName} objekti, kuna sul on
         // ühel ja samal vormil nii lisamine kui kuvamine
@@ -69,6 +69,7 @@ public class UserController {
             return "users/userList";
         } else {
             this.userService.insertUser(user);
+            model.addAttribute("success", "User successfully added!");
             return "redirect:/users";
         }
     }

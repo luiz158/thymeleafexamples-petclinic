@@ -28,6 +28,7 @@
         <div class="form-actions">
             <button type="submit">Add</button>
         </div>
+        <span class="help-inline" th:if="${success}" th:text="${success}">[success]</span>
     </form>
     <h2 th:text="#{forms.users.title}">Users</h2>
     <table class="table table-stripped" style="width:600px;">
