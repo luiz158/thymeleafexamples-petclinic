@@ -52,7 +52,7 @@ public class UserController {
                              @ModelAttribute("user") User user,BindingResult result) {
         new UserValidator().validate(user, result);
         if(result.hasErrors()){
-            return "redirect:/users/update/{userId}";
+            return "/users/updateUser";
         }else{
             this.userService.updateUser(user.getFirstName(), user.getLastName(), userId);
             return "redirect:/users";
