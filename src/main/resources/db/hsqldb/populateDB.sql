@@ -1,4 +1,8 @@
-INSERT INTO users VALUES (NULL,'Liisi', 'K');
-INSERT INTO users VALUES (NULL,'Mikk', 'V');
-INSERT INTO users VALUES (NULL,'Mikk2', 'V');
-INSERT INTO users VALUES (NULL,'Mikk3', 'V');
+INSERT INTO users VALUES (NULL,'Liisi', 'K',1);
+INSERT INTO users VALUES (NULL,'Mikk', 'V',1);
+INSERT INTO users VALUES (NULL,'Mikk2', 'V',1);
+INSERT INTO users VALUES (NULL,'Mikk3', 'V',1);
+
+INSERT INTO types VALUES (1,'MANAGER');
+INSERT INTO types VALUES (2,'USER');
+INSERT INTO types VALUES (3,'ADMIN');
