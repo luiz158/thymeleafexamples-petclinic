@@ -5,28 +5,31 @@
 <body>
 <div class="container">
     <div th:include="fragments/bodyHeader" th:remove="tag"></div>
-    <form th:object="${user}" th:method="post" th:action="@{${#httpServletRequest.servletPath}}" class="form-horizontal"
+    <form th:method="post" th:action="@{${#httpServletRequest.servletPath}}" class="form-horizontal"
           id="add-owner-form">
         <div class="control-group">
             <label class="control-label">First Name</label>
 
             <div class="controls">
-                <input type="text" th:placeholder="|First name|" th:field="*{firstName}"/>
-                <span class="help-inline" th:errors="*{firstName}">[error]</span>
+                <input type="text" th:placeholder="|First name|" th:field="${user.firstName}"/>
+                <span class="help-inline" th:errors="${user.firstName}">[error]</span>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">Last Name</label>
 
             <div class="controls">
-                <input type="text" th:placeholder="|Last name|" th:field="*{lastName}"/>
-                <span class="help-inline" th:errors="*{lastName}">[error]</span>
+                <input type="text" th:placeholder="|Last name|" th:field="${user.lastName}"/>
+                <span class="help-inline" th:errors="${user.lastName}">[error]</span>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">Type </label>
-            <select th:field="*{type}" size="5">
-                <!--<option th:each="t : ${types}" th:text="${t}" th:value="${t}" >[option]</option>-->
+            <select>
+                <option th:each="type : ${types}"
+                        th:text="${type.name}"
+                        th:value="${type.id}">[option]
+                </option>
             </select>
         </div>
         <div class="form-actions">

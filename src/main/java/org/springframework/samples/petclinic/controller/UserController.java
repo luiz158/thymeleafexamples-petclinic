@@ -1,7 +1,8 @@
-package org.springframework.samples.petclinic.web;
+package org.springframework.samples.petclinic.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.User;
+import org.springframework.samples.petclinic.model.UserType;
 import org.springframework.samples.petclinic.model.Users;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.samples.petclinic.util.UserValidator;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -43,6 +45,8 @@ public class UserController {
     @RequestMapping(value = "/users/update/{userId}", method = RequestMethod.GET)
     public String getUser(Model model, @PathVariable int userId) {
         User user = this.userService.findUserById(userId);
+        Set<UserType> types = this.userService.getTypes();
+        model.addAttribute("types", types);
         model.addAttribute("user", user);
         return "/users/updateUser";
     }

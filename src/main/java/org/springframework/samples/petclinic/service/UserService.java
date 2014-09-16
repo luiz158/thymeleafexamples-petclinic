@@ -8,12 +8,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.samples.petclinic.model.User;
+import org.springframework.samples.petclinic.model.UserType;
 import org.springframework.stereotype.Service;
 
 import java.sql.Types;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -61,4 +60,14 @@ public class UserService {
         this.jdbcTemplate.update("UPDATE users SET first_name = ?, last_name = ?, type_id = 1 WHERE id = ?",
                 firstName, lastName, userId);
     }
+
+  public Set<UserType> getTypes() {
+      Set<UserType> types = new HashSet<UserType>();
+
+      types.addAll(this.jdbcTemplate.query(
+            "SELECT id, name FROM types",
+            ParameterizedBeanPropertyRowMapper.newInstance(UserType.class)));
+
+      return types;
+  }
 }

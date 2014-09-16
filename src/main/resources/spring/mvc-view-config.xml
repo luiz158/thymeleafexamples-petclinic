@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	- DispatcherServlet application context for PetClinic's web tier.
+	- DispatcherServlet application context for PetClinic's controller tier.
 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -51,7 +51,7 @@
                 </bean>
         
                  <!-- Default viewClass: JSTL view (JSP with html output) -->
-<!--                 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
+<!--                 <bean class="org.springframework.controller.servlet.view.InternalResourceViewResolver"> -->
 <!--                     Example: a logical view name of 'vets' is mapped to '/WEB-INF/jsp/vets.jsp' --> 
 <!--                     <property name="prefix" value="/WEB-INF/jsp/"/> -->
 <!--                     <property name="suffix" value=".jsp"/> -->
@@ -78,10 +78,10 @@
     </bean>
 
     <!--&lt;!&ndash; Renders an Atom feed of the visits. Used by the BeanNameViewResolver  &ndash;&gt;-->
-    <!--<bean name="vets/vetList.atom" class="org.springframework.samples.petclinic.web.VetsAtomView"/>-->
+    <!--<bean name="vets/vetList.atom" class="org.springframework.samples.petclinic.controllertroller.VetsAtomView"/>-->
 
     <!--&lt;!&ndash; Renders an XML view. Used by the BeanNameViewResolver  &ndash;&gt;-->
-    <!--<bean name="vets/vetList.xml" class="org.springframework.web.servlet.view.xml.MarshallingView">-->
+    <!--<bean name="vets/vetList.xml" class="org.springframework.controller.servlet.view.xml.MarshallingView">-->
         <!--<property name="marshaller" ref="marshaller"/>-->
     <!--</bean>-->
 
