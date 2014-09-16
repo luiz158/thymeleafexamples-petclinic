@@ -23,6 +23,12 @@
                 <span class="help-inline" th:errors="*{lastName}">[error]</span>
             </div>
         </div>
+        <div class="control-group">
+            <label class="control-label">Type </label>
+            <select th:field="*{type}" size="5">
+                <!--<option th:each="t : ${types}" th:text="${t}" th:value="${t}" >[option]</option>-->
+            </select>
+        </div>
         <div class="form-actions">
             <button type="submit" name="doUpdate" value="update">Update</button>
         </div>
