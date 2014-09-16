@@ -28,7 +28,7 @@ public class UserService {
     public Collection<User> findAllUsers() throws DataAccessException {
         List<User> users = new ArrayList<User>();
         users.addAll(this.jdbcTemplate.query(
-                "SELECT id, first_name, last_name FROM users ORDER BY last_name,first_name",
+                "SELECT id, first_name, last_name, type_id FROM users ORDER BY last_name,first_name",
                 ParameterizedBeanPropertyRowMapper.newInstance(User.class)));
 
         return users;
@@ -42,13 +42,13 @@ public class UserService {
         Object[] params = new Object[]{user.getFirstName(), user.getLastName()};
         int[] types = new int[]{Types.VARCHAR, Types.VARCHAR};
 
-        this.jdbcTemplate.update("INSERT INTO users VALUES (NULL, ?, ?)", params, types);
+        this.jdbcTemplate.update("INSERT INTO users VALUES (NULL, ?, ?,1)", params, types);
     }
 
     public User findUserById(int userId) {
         User user;
         try {
-            String sql = "SELECT id, first_name, last_name FROM users WHERE id= ?";
+            String sql = "SELECT id, first_name, last_name, type_id FROM users WHERE id= ?";
             user = jdbcTemplate.queryForObject(sql, new Object[]{userId}, new BeanPropertyRowMapper<User>(User.class));
         } catch (EmptyResultDataAccessException ex) {
             System.out.println("findUserById error occured: " + ex);
@@ -58,7 +58,7 @@ public class UserService {
     }
 
     public void updateUser(String firstName, String lastName, int userId) {
-        this.jdbcTemplate.update("UPDATE users SET first_name = ?, last_name = ? WHERE id = ?",
+        this.jdbcTemplate.update("UPDATE users SET first_name = ?, last_name = ?, type_id = 1 WHERE id = ?",
                 firstName, lastName, userId);
     }
 }

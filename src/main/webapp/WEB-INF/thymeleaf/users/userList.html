@@ -45,7 +45,7 @@
             <td><a th:href="@{/users/remove/} + ${user.id}">X</a></td>
             <td><a th:href="@{/users/update/} + ${user.id}" th:text="|Update user w id: ${user.id}|">Update</a></td>
             <td th:text="|${user.firstName} ${user.lastName}|">[firstName lastName]</td>
-            <td th:text="|${user.type}|">[Type]</td>
+            <td th:text="${user.type}">[Type]</td>
         </tr>
         </tbody>
     </table>
