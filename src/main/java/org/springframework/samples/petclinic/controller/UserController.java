@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.model.UserType;
+import org.springframework.samples.petclinic.model.UserTypes;
 import org.springframework.samples.petclinic.model.Users;
 import org.springframework.samples.petclinic.service.UserService;
 import org.springframework.samples.petclinic.util.UserValidator;
@@ -26,10 +27,15 @@ public class UserController {
 
     @RequestMapping("/users")
     public String getUsers(Model model, @ModelAttribute("success") String success) {
-        Users users = new Users();
+        User user = new User();
         // puhtalt selleks, et saaks initsialiseerida Thymeleaf'i view's nt vormil *{firstName} objekti, kuna sul on
         // ühel ja samal vormil nii lisamine kui kuvamine
-        User user = new User();
+
+        UserTypes userTypes = new UserTypes();
+        userTypes.getUserTypes().addAll(this.userService.findAllUserTypes());
+        model.addAttribute("userTypes",userTypes);
+
+        Users users = new Users();
         users.getUserList().addAll(this.userService.findAllUsers());
         model.addAttribute("users", users);
         model.addAttribute("user", user);

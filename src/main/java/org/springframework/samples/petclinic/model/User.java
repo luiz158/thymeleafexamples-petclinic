@@ -13,6 +13,17 @@ public class User extends Person {
     @JoinColumn(name = "type_id")
     private UserType type;
 
+    public User() {
+        super();
+    }
+
+    public User(int id, String fn, String ln,UserType type) {
+        this.setId(id);
+        this.setFirstName(fn);
+        this.setLastName(ln);
+        this.type = type;
+    }
+
     public UserType getType() {
         return type;
     }
@@ -22,4 +33,12 @@ public class User extends Person {
     }
 
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "name=" + this.getFirstName() +
+                " name=" + this.getLastName() +
+                " type=" + type.getName() +
+                '}';
+    }
 }

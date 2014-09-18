@@ -29,6 +29,14 @@
         @Column(name = "name")
         private String name;
 
+        public UserType() {
+            this.name = "default name";
+        }
+
+        public UserType(String name) {
+            this.name = name;
+        }
+
         public void setName(String name) {
                 this.name = name;
         }
