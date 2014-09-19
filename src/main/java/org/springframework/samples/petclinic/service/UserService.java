@@ -95,9 +95,9 @@ public class UserService {
 
 
 
-    public void updateUser(String firstName, String lastName, int userId) {
-        this.jdbcTemplate.update("UPDATE users SET first_name = ?, last_name = ?, type_id = 1 WHERE id = ?",
-                firstName, lastName, userId);
+    public void updateUser(String firstName, String lastName, UserType type, int userId) {
+        this.jdbcTemplate.update("UPDATE users SET first_name = ?, last_name = ?, type_id = ? WHERE id = ?",
+                firstName, lastName, type.getId(), userId);
     }
 
   public Set<UserType> getTypes() {

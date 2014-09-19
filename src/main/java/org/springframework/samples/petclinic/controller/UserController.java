@@ -64,7 +64,7 @@ public class UserController {
         if(result.hasErrors()){
             return "/users/updateUser";
         }else{
-            this.userService.updateUser(user.getFirstName(), user.getLastName(), userId);
+            this.userService.updateUser(user.getFirstName(), user.getLastName(), user.getType(), userId);
             model.addAttribute("success", "User successfully UPDATED!");
             return "redirect:/users";
         }

@@ -25,7 +25,7 @@
         </div>
         <div class="control-group">
             <label class="control-label">Type </label>
-            <select>
+            <select th:field="${user.type.id}">
                 <option th:each="type : ${types}"
                         th:text="${type.name}"
                         th:value="${type.id}">[option]
