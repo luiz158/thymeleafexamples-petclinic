@@ -10,15 +10,14 @@ The Thymeleaf version can be found at https://github.com/thymeleaf/thymeleafexam
 
 ## Running the Thymol petclinic project locally
 
-First, you will have to download it. If you have a local installation of git, you can
-do it by simply cloning this repository:
+First, you will have to download the project. If you have a local installation of git, you can simply clone this repository:
 
 ```
 	git clone https://github.com/thymol/thymol.thymeleafexamples-petclinic.git
 ```
 
 If you don't have git installed, you can download a `.zip` by pressing on the 
-*Download zip* button in the upper side of this page.
+*Download zip* button on the right-hand side of this page.
 
 Once downloaded, simply use your web browser to load the following file from your local file system:
 ```
