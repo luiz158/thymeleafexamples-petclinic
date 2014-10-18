@@ -49,7 +49,7 @@ PCDate.prototype.constructor = PCDate;
 
 var thMappings = [
 
-      ["/webjars/jquery/1.9.0/jquery.js",                                    "http://code.jquery.com/jquery-1.9.0.js"],
+      ["/webjars/jquery/1.11.1/jquery.js",                                   "http://code.jquery.com/jquery-1.11.1.min.js"],
       ["/webjars/bootstrap/2.3.0/css/bootstrap.min.css",                     "http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css"],
       ["/webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.js",              "http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"],
       ["/webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css"],
