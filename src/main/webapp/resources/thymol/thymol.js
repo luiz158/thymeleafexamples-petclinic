@@ -1,7 +1,7 @@
 /*-------------------- Thymol - the flavour of Thymeleaf --------------------*
 
-   Thymol version 2.0.0-SNAPSHOT Copyright (C) 2012-2014 James J. Benson
-   <jjbenson AT users.sf.net> (http://www.thymoljs.org/)
+   Thymol version 2.0.0-SNAPSHOT Copyright (C) 2012-2015 James J. Benson
+   jjbenson .AT. users.sf.net (http://www.thymoljs.org/)
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -30,7 +30,10 @@
         thDefaultMessagePath: "",
         thDefaultMessagesBaseName: "Messages",
         thDefaultRelativeRootPath: "",
-        thDefaultExtendedMapping: false
+        thDefaultExtendedMapping: false,
+        thDefaultLocalMessages: true,
+        thDefaultDisableMessages: false,
+        thDefaultTemplateSuffix: ".html"
     };
     thymol = function(conf) {
         conf.ready = function(func) {
@@ -41,6 +44,9 @@
         };
         return conf;
     }(thymolConfiguration);
+    thymol.thDomParser = DOMParser;
+    thymol.thWindow = window;
+    var toc = 0;
     var loadScript = function(script, params) {
         var el = document.createElement("script");
         el.async = false;
@@ -48,7 +54,7 @@
             el.src = script;
         }
         if (typeof params !== "undefined" && params !== null) {
-            el.src += params;
+            el.src += params.charAt(0) === "?" ? params : "?" + params;
         }
         el.type = "text/javascript";
         (document.getElementsByTagName("HEAD")[0] || document.body).appendChild(el);
