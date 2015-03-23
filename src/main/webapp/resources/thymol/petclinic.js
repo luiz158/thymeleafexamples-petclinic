@@ -1,17 +1,30 @@
-var thProtocol = "";
-var thRelativeRootPath = "../..";
-var thPath = "WEB-INF/thymeleaf";
-var thMessagePath = "../resources/messages";
+var thIndexFile, thMessagePath, localPath, pathToScripts;
+if( thymol.isClientSide() ) { // For client-side thymol
+  var thProtocol = "";
+  var thRelativeRootPath = "../..";
+  var thPath = "WEB-INF/thymeleaf";
+  localPath = thPath + "/";
+  pathToScripts = thymol.location;
+  thIndexFile = localPath + "welcome.html";
+  thMessagePath = "../resources/messages";
+}
+else {
+  localPath = "";
+  pathToScripts = "../../resources/thymol/";
+  thIndexFile = "welcome";
+  thMessagePath = "../../../resources/messages";
+}
+
 var thMessagesBaseName = "messages";
-var thIndexFile = thPath + "/welcome.html";
-var thDebug = true;
 var thExtendedMapping = true;
 
 thymol.ready(function () {
   thymol.configurePreExecution( function() {
-    ThUtils.loadScript(thymol.location + "fields-object.js");
-    ThUtils.loadScript(thymol.location + "field-attribute.js");
-    ThUtils.loadScript(thymol.location + "errors-attribute.js");
+
+    thymol.ThUtils.loadScript(pathToScripts + "fields-object.js");
+    thymol.ThUtils.loadScript(pathToScripts + "field-attribute.js");
+    thymol.ThUtils.loadScript(pathToScripts + "errors-attribute.js");
+
     thymol.addDialect({
       prefix : 'th',
       attributeProcessors : [
@@ -49,40 +62,42 @@ PCDate.prototype.constructor = PCDate;
 
 var thMappings = [
 
-      ["/webjars/jquery/1.11.1/jquery.js",                                   "http://code.jquery.com/jquery-1.11.1.min.js"],
+      ["/webjars/jquery/1.11.1/jquery.js",                                   "http://code.jquery.com/jquery-2.1.3.min.js"],
       ["/webjars/bootstrap/2.3.0/css/bootstrap.min.css",                     "http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css"],
       ["/webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.js",              "http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"],
       ["/webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css"],
 
-      ["/owners/find.html",                                 "/" + thPath + "/owners/findOwners.html"],
-      ["/vets.html",                                        "/" + thPath + "/vets/vetList.html"],
-      ["/oups.html",                                        "/" + thPath + "/exception.html"],
-      ["/owners.html",                                      "/" + thPath + "/owners/ownersList.html"],      
-      ["/owners/new",                                       "/" + thPath + "/owners/createOrUpdateOwnerForm.html?owner=%"],      
+      ["/owners/find.html",                                 "/" + localPath + "owners/findOwners.html"],
+      ["/vets.html",                                        "/" + localPath + "vets/vetList.html"],
+      ["/oups.html",                                        "/" + localPath + "exception.html"],
+      ["/owners.html",                                      "/" + localPath + "owners/ownersList.html"],
+      ["/owners/new",                                       "/" + localPath + "owners/createOrUpdateOwnerForm.html?owner=%"],
 
-      ["23smith1/edit.html",                                "/" + thPath + "/owners/createOrUpdateOwnerForm.html?owner=%23smith1"],      
-      ["23smith1/pets/new.html",                            "/" + thPath + "/pets/createOrUpdatePetForm.html?pet=%23pet1a"],           
-      ["/owners/23smith1/pets/23pet1/edit",                 "/" + thPath + "/pets/createOrUpdatePetForm.html?pet=%23pet1"],      
-      ["/owners/23smith1/pets/23pet2/edit",                 "/" + thPath + "/pets/createOrUpdatePetForm.html?pet=%23pet2"],      
-      ["/owners/23smith1/pets/23pet1/visits/new",           "/" + thPath + "/pets/createOrUpdateVisitForm.html?visit=%23visit1a"],      
-      ["/owners/23smith1/pets/23pet2/visits/new",           "/" + thPath + "/pets/createOrUpdateVisitForm.html?visit=%23visit2a"],      
+      ["23smith1/edit.html",                                "/" + localPath + "owners/createOrUpdateOwnerForm.html?owner=%23smith1"],
+      ["23smith1/pets/new.html",                            "/" + localPath + "pets/createOrUpdatePetForm.html?pet=%23pet1a"],
+      ["/owners/23smith1/pets/23pet1/edit",                 "/" + localPath + "pets/createOrUpdatePetForm.html?pet=%23pet1"],
+      ["/owners/23smith1/pets/23pet2/edit",                 "/" + localPath + "pets/createOrUpdatePetForm.html?pet=%23pet2"],
+      ["/owners/23smith1/pets/23pet1/visits/new",           "/" + localPath + "pets/createOrUpdateVisitForm.html?visit=%23visit1a"],
+      ["/owners/23smith1/pets/23pet2/visits/new",           "/" + localPath + "pets/createOrUpdateVisitForm.html?visit=%23visit2a"],
  
-      ["23adams1/edit.html",                                "/" + thPath + "/owners/createOrUpdateOwnerForm.html?owner=%23adams1"],      
-      ["23adams1/pets/new.html",                            "/" + thPath + "/pets/createOrUpdatePetForm.html?pet=%23pet3a"],      
-      ["/owners/23adams1/pets/23pet3/edit",                 "/" + thPath + "/pets/createOrUpdatePetForm.html?pet=%23pet3"],      
-      ["/owners/23adams1/pets/23pet4/edit",                 "/" + thPath + "/pets/createOrUpdatePetForm.html?pet=%23pet4"],      
-      ["/owners/23adams1/pets/23pet3/visits/new",           "/" + thPath + "/pets/createOrUpdateVisitForm.html?visit=%23visit3a"],      
-      ["/owners/23adams1/pets/23pet4/visits/new",           "/" + thPath + "/pets/createOrUpdateVisitForm.html?visit=%23visit4a"],      
+      ["23adams1/edit.html",                                "/" + localPath + "owners/createOrUpdateOwnerForm.html?owner=%23adams1"],
+      ["23adams1/pets/new.html",                            "/" + localPath + "pets/createOrUpdatePetForm.html?pet=%23pet3a"],
+      ["/owners/23adams1/pets/23pet3/edit",                 "/" + localPath + "pets/createOrUpdatePetForm.html?pet=%23pet3"],
+      ["/owners/23adams1/pets/23pet4/edit",                 "/" + localPath + "pets/createOrUpdatePetForm.html?pet=%23pet4"],
+      ["/owners/23adams1/pets/23pet3/visits/new",           "/" + localPath + "pets/createOrUpdateVisitForm.html?visit=%23visit3a"],
+      ["/owners/23adams1/pets/23pet4/visits/new",           "/" + localPath + "pets/createOrUpdateVisitForm.html?visit=%23visit4a"],
 
-      ["23munst1/edit.html",                                "/" + thPath + "/owners/createOrUpdateOwnerForm.html?owner=%23munst1"],            
-      ["23munst1/pets/new.html",                            "/" + thPath + "/pets/createOrUpdatePetForm.html?pet=%23pet5a"],      
-      ["/owners/23munst1/pets/23pet5/edit",                 "/" + thPath + "/pets/createOrUpdatePetForm.html?pet=%23pet5"],      
-      ["/owners/23munst1/pets/23pet6/edit",                 "/" + thPath + "/pets/createOrUpdatePetForm.html?pet=%23pet6"],      
-      ["/owners/23munst1/pets/23pet5/visits/new",           "/" + thPath + "/pets/createOrUpdateVisitForm.html?visit=%23visit5a"],      
-      ["/owners/23munst1/pets/23pet6/visits/new",           "/" + thPath + "/pets/createOrUpdateVisitForm.html?visit=%23visit6a"],      
-      
-      ["/owners/",                                          "/" + thPath + "/owners/ownerDetails.html?owner=%"]
-  
+      ["23munst1/edit.html",                                "/" + localPath + "owners/createOrUpdateOwnerForm.html?owner=%23munst1"],
+      ["23munst1/pets/new.html",                            "/" + localPath + "pets/createOrUpdatePetForm.html?pet=%23pet5a"],
+      ["/owners/23munst1/pets/23pet5/edit",                 "/" + localPath + "pets/createOrUpdatePetForm.html?pet=%23pet5"],
+      ["/owners/23munst1/pets/23pet6/edit",                 "/" + localPath + "pets/createOrUpdatePetForm.html?pet=%23pet6"],
+      ["/owners/23munst1/pets/23pet5/visits/new",           "/" + localPath + "pets/createOrUpdateVisitForm.html?visit=%23visit5a"],
+      ["/owners/23munst1/pets/23pet6/visits/new",           "/" + localPath + "pets/createOrUpdateVisitForm.html?visit=%23visit6a"],
+
+      ["/owners/",                                          "/" + localPath + "owners/ownerDetails.html?owner=%"]//,
+
+//      ["/",                                                 "/" + localPath + "welcome.html"]
+
 ];
 
 var  thVars = [
