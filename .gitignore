@@ -5,4 +5,7 @@ bin/
 .settings/
 .idea/
 *.iml
+src/main/webapp/resources/thymol/node_modules
+src/main/webapp/resources/thymol/rethinkdb_data
+doc/
 
