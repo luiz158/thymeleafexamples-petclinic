@@ -97,7 +97,7 @@
                         </tr>
                         </thead>
                             <tr th:each="visit : ${pet.visits}">
-                                <td th:text="${#dates.format(visit.date.toDate(), 'yyyy-MM-dd')}">[date yyyy-MM-dd</td>
+                                <td th:text="${#dates.format(visit.date.toDate(), 'yyyy-MM-dd')}">[date yyyy-MM-dd]</td>
                                 <td th:text="${visit.description}">[description]</td>
                             </tr>
                         <tr>

@@ -45,3 +45,6 @@ function fieldAttrProcessor(element, attr, thAttr) {
 	element.removeAttribute(attr.name);
 	return domUpdated;
 }
+if( !thymol.isClientSide() ) {
+  module.exports = fieldAttrProcessor;
+}

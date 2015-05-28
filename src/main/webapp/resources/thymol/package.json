@@ -1,0 +1,27 @@
+{
+  "name": "thymol-thymeleafexamples-petclinic",
+  "version": "1.0.0",
+  "description": "Classic petclinic example for thymeleaf but re-worked for thymol-node-server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "thymol",
+    "thymeleaf",
+    "petclinic"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "bluebird": "*",
+    "feed": "^0.2.6",
+    "js-data": "1.8.0",
+    "js-data-rethinkdb": "1.2.0",
+    "js-data-sql": "^0.4.1",
+    "knex": "^0.8.5",
+    "rethinkdbdash": "*",
+    "sqlite3": "^3.0.8",
+    "xml2js": "^0.4.8"
+  }
+}

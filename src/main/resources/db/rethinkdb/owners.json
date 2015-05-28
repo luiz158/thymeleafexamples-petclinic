@@ -1,0 +1,12 @@
+[
+{ "id": 1, "first_name": "George", "last_name": "Franklin", "address": "110 W. Liberty St.", "city": "Madison", "telephone": "6085551023" },
+{ "id": 2, "first_name": "Betty", "last_name": "Davis", "address": "638 Cardinal Ave.", "city": "Sun Prairie", "telephone": "6085551749" },
+{ "id": 3, "first_name": "Eduardo", "last_name": "Rodriquez", "address": "2693 Commerce St.", "city": "McFarland", "telephone": "6085558763" },
+{ "id": 4, "first_name": "Harold", "last_name": "Davis", "address": "563 Friendly St.", "city": "Windsor", "telephone": "6085553198" },
+{ "id": 5, "first_name": "Peter", "last_name": "McTavish", "address": "2387 S. Fair Way", "city": "Madison", "telephone": "6085552765" },
+{ "id": 6, "first_name": "Jean", "last_name": "Coleman", "address": "105 N. Lake St.", "city": "Monona", "telephone": "6085552654" },
+{ "id": 7, "first_name": "Jeff", "last_name": "Black", "address": "1450 Oak Blvd.", "city": "Monona", "telephone": "6085555387" },
+{ "id": 8, "first_name": "Maria", "last_name": "Escobito", "address": "345 Maple St.", "city": "Madison", "telephone": "6085557683" },
+{ "id": 9, "first_name": "David", "last_name": "Schroeder", "address": "2749 Blackhawk Trail", "city": "Madison", "telephone": "6085559435" },
+{ "id": 10, "first_name": "Carlos", "last_name": "Estaban", "address": "2335 Independence La.", "city": "Waunakee", "telephone": "6085555487" }
+]

@@ -1,0 +1,6 @@
+[
+{ "id": 1, "pet_id": 7, "visit_date": "2013-01-01", "description": "rabies shot" },
+{ "id": 2, "pet_id": 8, "visit_date": "2013-01-02", "description": "rabies shot" },
+{ "id": 3, "pet_id": 8, "visit_date": "2013-01-03", "description": "neutered" },
+{ "id": 4, "pet_id": 7, "visit_date": "2013-01-04", "description": "spayed" }
+]

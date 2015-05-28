@@ -1,0 +1,7 @@
+[
+{ "id": 1, "vet_id": 2, "specialty_id": 1 },
+{ "id": 2, "vet_id": 3, "specialty_id": 2 },
+{ "id": 3, "vet_id": 3, "specialty_id": 3 },
+{ "id": 4, "vet_id": 4, "specialty_id": 2 },
+{ "id": 5, "vet_id": 5, "specialty_id": 1 }
+]
